@@ -1,47 +1,30 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <el-container style="height: 100vh;">
+    <el-header style="background-color: #409EFF; color: white; text-align: center; font-size: 24px;">
+      船舶位置与气象信息系统
+    </el-header>
+    <el-container>
+      <MapView />
+    </el-container>
+  </el-container>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script>
+import MapView from "./components/MapView.vue"; // 确保路径正确
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+export default {
+  name: "App",
+  components: {
+    MapView,
+  },
+};
+</script>
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+<style>
+/* App.vue 的全局样式 */
+body, html, #app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 </style>
