@@ -1,14 +1,14 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router';
-import ShipTrajectory from '../views/ShipTrajectory.vue';
-import Login from '../views/LoginView.vue';
+import HomeView from '../views/HomeView.vue';
+import Login from '../views/AuthView.vue';
 import store from '@/store';
 
 const routes = [
     {
-        path: '/ShipTrajectory',
-        name: 'ShipTrajectory',
-        component: ShipTrajectory,
+        path: '/Home',
+        name: 'HomeView',
+        component: HomeView,
         meta: { requiresAuth: true },
     },
     {

@@ -1,28 +1,52 @@
 <template>
-  <el-container>
-    <el-header>原油运输船舶数据可视化平台</el-header>
-    <el-main>
-      <MapView />
-    </el-main>
-  </el-container>
+  <div class="home-view">
+    <!-- 顶部导航栏 -->
+    <TopNavBar />
+
+    <!-- 主内容区域 -->
+    <div class="main-content">
+      <div class="ship-trajectory">
+        <ShipList />
+        <ShipMap />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import MapView from '@/components/MapView.vue';
+import TopNavBar from '../components/common/TopNavBar.vue';
+import ShipList from '../components/ship/ShipList.vue';
+import ShipMap from '../components/ship/ShipMap.vue';
 
 export default {
   name: 'HomeView',
   components: {
-    MapView,
+    TopNavBar,
+    ShipList,
+    ShipMap,
   },
 };
 </script>
 
 <style scoped>
-.el-header {
-  background-color: #409eff;
-  color: #fff;
-  text-align: center;
-  line-height: 60px;
+.home-view {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-nav-bar {
+  height: 60px; /* 顶部导航栏高度 */
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.ship-trajectory {
+  display: flex;
+  flex: 1;
 }
 </style>

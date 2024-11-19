@@ -7,7 +7,6 @@ import store from './store/index.js'; // 同样指定 index.js
 
 import './assets/tailwind.css'; // 导入 Tailwind CSS
 
-
 const app = createApp(App);
 
 app.use(store);
