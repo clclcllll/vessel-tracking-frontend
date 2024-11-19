@@ -1,11 +1,14 @@
 // src/store/index.js
 
 import { createStore } from 'vuex';
+import ship from './modules/ship';
+import auth from './modules/auth';
 
 const store = createStore({
-    state: {},
-    mutations: {},
-    actions: {},
+    modules: {
+        ship,
+        auth,
+    },
 });
 
 export default store;

@@ -13,9 +13,6 @@
 </template>
 
 <script>
-import Navbar from './Navbar.vue';
-import LoginView from './LoginView.vue';
-import RegisterView from './RegisterView.vue';
 
 export default {
   name: 'AuthView',
