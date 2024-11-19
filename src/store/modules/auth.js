@@ -1,5 +1,5 @@
 // src/store/modules/auth.js
-import { login, logout } from '@/api/authApi';
+import { login, logout, register } from '@/api/authApi';
 import { getToken, setToken, removeToken } from '@/utils/auth';
 
 const state = {
@@ -33,6 +33,14 @@ const actions = {
             // commit('SET_USER_INFO', response.data.user);
         } catch (error) {
             console.error('登录失败:', error);
+            throw error;
+        }
+    },
+    async register(_, { username, password }) {
+        try {
+            await register(username, password);
+        } catch (error) {
+            console.error('注册失败:', error);
             throw error;
         }
     },

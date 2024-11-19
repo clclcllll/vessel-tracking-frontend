@@ -29,10 +29,13 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
     (response) => {
-        // 如果后端返回新的令牌，可以在此更新
-        const newToken = response.headers['Authorization'] || response.headers['authorization'];
-        if (newToken) {
-            setToken(newToken);
+        // 如果响应中包含 token，将其保存
+        if (response.config.url.includes('/api/auth/login')) {
+            const token = response.data; // 登录接口的响应体直接是 Token
+            if (token) {
+                setToken(token); // 保存到本地存储
+                console.log('新 Token:', token); // 打印新的 token 方便调试
+            }
         }
         return response;
     },
@@ -47,7 +50,7 @@ service.interceptors.response.use(
             if (status === 401 || status === 403) {
                 removeToken();
                 alert('登录已过期，请重新登录。');
-                window.location.href = '/login'; // 根据实际的登录路由调整
+                window.location.href = '/'; // 重新登录
             } else {
                 alert(message);
             }

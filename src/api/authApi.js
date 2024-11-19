@@ -13,3 +13,11 @@ export function login(username, password) {
 export function logout() {
     return request.post('/api/auth/logout');
 }
+
+// 用户注册
+export function register(username, password) {
+    return request.post('/api/auth/register', {
+        username,
+        password,
+    });
+}
