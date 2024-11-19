@@ -1,34 +1,55 @@
-<!-- src/components/ShipList.vue -->
 <template>
-  <div class="ship-list">
-    <h2>选择船舶</h2>
-    <ul>
-      <li
-          v-for="ship in ships"
-          :key="ship.id"
-          @click="onSelectShip(ship)"
-          :class="{ selected: ship.id === selectedShip?.id }"
-      >
-        {{ ship.ship_name }}
-      </li>
-    </ul>
+  <div class="flex flex-col w-72 border-r border-gray-300 h-screen overflow-hidden">
+    <h2 class="text-lg font-bold p-4 border-b border-gray-300">选择船舶</h2>
+    <input
+        type="text"
+        v-model="searchQuery"
+        placeholder="搜索船舶"
+        @input="onSearch"
+        class="px-4 py-2 m-4 border rounded focus:outline-none focus:ring focus:ring-blue-200"
+    />
+    <div class="overflow-y-auto flex-grow">
+      <ul class="space-y-1">
+        <li
+            v-for="ship in filteredShips"
+            :key="ship.id"
+            @click="onSelectShip(ship)"
+            :class="[
+            'px-4 py-2 cursor-pointer hover:bg-gray-200',
+            ship.id === selectedShip?.id ? 'bg-blue-100 font-bold' : ''
+          ]"
+        >
+          {{ ship.ship_name }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
-import * as selectedShip from "element-plus/es/locale/index";
+import { mapState, mapActions } from "vuex";
 
 export default {
-  name: 'ShipList',
+  name: "ShipList",
+  data() {
+    return {
+      searchQuery: "",
+    };
+  },
   computed: {
-    selectedShip() {
-      return selectedShip
+    ...mapState("ship", ["ships", "selectedShip"]),
+    filteredShips() {
+      // 根据搜索框过滤船舶
+      return this.ships.filter((ship) =>
+          ship.ship_name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
     },
-    ...mapState('ship', ['ships', 'selectedShip']),
   },
   methods: {
-    ...mapActions('ship', ['fetchShips', 'selectShip', 'fetchTrajectory']),
+    ...mapActions("ship", ["fetchShips", "selectShip", "fetchTrajectory"]),
+    onSearch() {
+      // Vue 响应式会自动处理过滤
+    },
     onSelectShip(ship) {
       this.selectShip(ship);
       this.fetchTrajectory({ shipId: ship.id });
@@ -41,23 +62,5 @@ export default {
 </script>
 
 <style scoped>
-.ship-list {
-  width: 200px;
-  border-right: 1px solid #ccc;
-}
-
-.ship-list ul {
-  list-style: none;
-  padding: 0;
-}
-
-.ship-list li {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.ship-list li.selected {
-  background-color: #f0f0f0;
-  font-weight: bold;
-}
+/* Tailwind CSS 已应用，避免自定义 CSS */
 </style>

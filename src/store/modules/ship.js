@@ -34,9 +34,11 @@ const actions = {
             console.error('获取船舶列表失败:', error);
         }
     },
+    // 从后端获取轨迹数据
     async fetchTrajectory({ commit }, { shipId, startTime, endTime }) {
         try {
             const response = await fetchTrajectory(shipId, startTime, endTime);
+            console.log('后端返回轨迹数据:', response.data); // 验证是否已格式化为小数点
             commit('SET_TRAJECTORY', response.data);
         } catch (error) {
             console.error('获取轨迹数据失败:', error);

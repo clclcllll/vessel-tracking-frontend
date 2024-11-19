@@ -28,12 +28,16 @@ export default {
         trajectoryLayer.remove();
       }
       const latlngs = trajectory.map((point) => [
-        point.latitude,
-        point.longitude,
+        point.latitude / 1e6, // 转换为标准的经纬度格式
+        point.longitude / 1e6, // 转换为标准的经纬度格式
       ]);
       trajectoryLayer = L.polyline(latlngs, { color: 'blue' }).addTo(map);
       map.fitBounds(trajectoryLayer.getBounds());
     };
+
+
+
+
 
     onMounted(() => {
       initMap();
