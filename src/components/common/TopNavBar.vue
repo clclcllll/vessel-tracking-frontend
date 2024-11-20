@@ -31,7 +31,7 @@ export default {
   name: 'TopNavBar',
   setup() {
     const store = useStore();
-    const systemName = '原油运输可视化系统';
+    const systemName = '船舶运输可视化系统';
 
     // 动态生成用户头像 URL
     const generateAvatarUrl = (username) => {

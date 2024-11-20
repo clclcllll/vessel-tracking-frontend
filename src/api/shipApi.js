@@ -15,3 +15,7 @@ export function fetchTrajectory(shipId, startTime, endTime) {
         },
     });
 }
+// 获取指定船舶的详细信息
+export function fetchShipDetails(shipId) {
+    return request.get(`/api/ships/${shipId}/details`);
+}

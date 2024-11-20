@@ -5,10 +5,9 @@
 
     <!-- 主内容区域 -->
     <div class="main-content">
-      <div class="ship-trajectory">
-        <ShipList />
-        <ShipMap />
-      </div>
+      <ShipList />
+      <ShipMap />
+      <ShipInfo />
     </div>
   </div>
 </template>
@@ -17,6 +16,7 @@
 import TopNavBar from '../components/common/TopNavBar.vue';
 import ShipList from '../components/ship/ShipList.vue';
 import ShipMap from '../components/ship/ShipMap.vue';
+import ShipInfo from '../components/ship/ShipInfo.vue';
 
 export default {
   name: 'HomeView',
@@ -24,6 +24,7 @@ export default {
     TopNavBar,
     ShipList,
     ShipMap,
+    ShipInfo,
   },
 };
 </script>

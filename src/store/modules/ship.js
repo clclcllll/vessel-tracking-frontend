@@ -1,16 +1,18 @@
 // src/store/modules/ship.js
-import { fetchShips, fetchTrajectory } from '@/api/shipApi';
+import { fetchShips, fetchTrajectory, fetchShipDetails } from '@/api/shipApi';
 
 const state = {
     ships: [],
     selectedShip: null,
     trajectory: [],
+    shipInfo: null, // 新增状态：保存船舶详细信息
 };
 
 const getters = {
     ships: (state) => state.ships,
     selectedShip: (state) => state.selectedShip,
     trajectory: (state) => state.trajectory,
+    shipInfo: (state) => state.shipInfo, // Getter
 };
 
 const mutations = {
@@ -22,6 +24,9 @@ const mutations = {
     },
     SET_TRAJECTORY(state, trajectory) {
         state.trajectory = trajectory;
+    },
+    SET_SHIP_INFO(state, shipInfo) {
+        state.shipInfo = shipInfo; // 新增 Mutation
     },
 };
 
@@ -44,8 +49,17 @@ const actions = {
             console.error('获取轨迹数据失败:', error);
         }
     },
-    selectShip({ commit }, ship) {
+    async fetchShipDetails({ commit }, shipId) {
+        try {
+            const response = await fetchShipDetails(shipId);
+            commit('SET_SHIP_INFO', response.data); // 保存详细信息到状态
+        } catch (error) {
+            console.error('获取船舶详细信息失败:', error);
+        }
+    },
+    selectShip({ commit,dispatch }, ship) {
         commit('SET_SELECTED_SHIP', ship);
+        dispatch('fetchShipDetails', ship.id); // 确保使用 dispatch 调用另一个 action
     },
 };
 

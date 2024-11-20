@@ -35,10 +35,6 @@ export default {
       map.fitBounds(trajectoryLayer.getBounds());
     };
 
-
-
-
-
     onMounted(() => {
       initMap();
     });
@@ -51,7 +47,6 @@ export default {
           }
         }
     );
-
     return {};
   },
 };

@@ -1,3 +1,4 @@
+<!-- src/components/ship/ShipList.vue -->
 <template>
   <div class="flex flex-col w-72 border-r border-gray-300 h-screen overflow-hidden">
     <h2 class="text-lg font-bold p-4 border-b border-gray-300">选择船舶</h2>
@@ -54,9 +55,16 @@ export default {
       this.selectShip(ship);
       this.fetchTrajectory({ shipId: ship.id });
     },
+    selectDefaultShip() {
+      if (this.filteredShips.length > 0) {
+        this.onSelectShip(this.filteredShips[0]); // 默认选中第一个船舶
+      }
+    },
   },
   mounted() {
-    this.fetchShips();
+    this.fetchShips().then(() => {
+      this.selectDefaultShip(); // 获取船舶列表后选择第一个船舶
+    });
   },
 };
 </script>
