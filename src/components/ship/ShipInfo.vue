@@ -7,8 +7,8 @@
       <p><strong>IMO：</strong>{{ shipInfo.ship.imo }}</p>
       <p><strong>呼号：</strong>{{ shipInfo.ship.callSign }}</p>
       <p><strong>船长：</strong>{{ shipInfo.ship.length }} 米</p>
-      <p><strong>船宽：</strong>{{ shipInfo.ship.width }} 米</p>
       <p><strong>吃水深度：</strong>{{ shipInfo.ship.draft / 1000 }} 米</p>
+      <p><strong>船宽：</strong>{{ shipInfo.ship.width }} 米</p>
       <p><strong>国家：</strong>{{ shipInfo.country.countryName }}</p>
       <p><strong>船舶类型：</strong>{{ shipInfo.shipType.typeName || '未知' }}</p>
       <p><strong>预计到达时间：</strong>{{ formatDate(shipInfo.ship.eta) }}</p>
